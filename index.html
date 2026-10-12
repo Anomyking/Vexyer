@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" class="no-gl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Aetherworks — Digital studio for cinematic web experiences</title>
+    <meta
+      name="description"
+      content="Aetherworks is a digital studio designing and engineering immersive, high-performance web experiences. Explore selected work, our approach, and how we collaborate."
+    />
+    <meta name="theme-color" content="#05070d" />
+    <meta property="og:title" content="Aetherworks — Digital studio" />
+    <meta property="og:description" content="Immersive, high-performance web experiences." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2305070d'/%3E%3Cpath d='M6 22 26 8 14 26l-2-7z' fill='%23fff'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#hero" data-goto="hero" aria-label="Aetherworks, back to top">
+        <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path d="M3 21 29 5 15 29l-3-8z" fill="currentColor" /></svg>
+        <span>Aetherworks</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#work" data-goto="work">Work</a></li>
+          <li><a href="#approach" data-goto="approach">Approach</a></li>
+          <li><a href="#studio" data-goto="studio">Studio</a></li>
+          <li><a href="#contact" data-goto="contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="motion-toggle" id="motion-toggle" aria-pressed="false">
+        <span class="sr-only">Reduce motion</span><span aria-hidden="true">Motion: on</span>
+      </button>
+    </header>
+
+    <!-- WebGL canvas: purely decorative, all content below is real HTML -->
+    <canvas id="gl" aria-hidden="true"></canvas>
+
+    <main id="content">
+      <!-- 1 · HERO -->
+      <section id="hero" class="chapter" data-chapter="hero" aria-labelledby="hero-title">
+        <div class="chapter-inner hero-inner">
+          <p class="eyebrow">Digital studio · Nairobi · Remote-first</p>
+          <h1 id="hero-title">We build web experiences that <em>move</em>.</h1>
+          <p class="lede">
+            Strategy, design and engineering for brands that want their websites to feel like places, not pages.
+          </p>
+          <p class="scroll-cue" aria-hidden="true"><span></span>Scroll to enter</p>
+        </div>
+      </section>
+
+      <!-- 2 · PORTFOLIO -->
+      <section id="work" class="chapter" data-chapter="work" aria-labelledby="work-title">
+        <div class="chapter-inner work-inner">
+          <div class="work-head">
+            <p class="eyebrow">Selected work</p>
+            <h2 id="work-title">Six projects, one standard.</h2>
+          </div>
+
+          <ol class="projects" aria-label="Projects">
+            <li class="project" data-project data-hue="212" id="project-1">
+              <article>
+                <p class="project-meta">Fintech · 2025</p>
+                <h3>Nimbus Bank</h3>
+                <p>A mobile-first banking redesign that cut onboarding from nine screens to three.</p>
+                <p class="tags"><span>Product design</span><span>React Native</span></p>
+                <a class="link" href="#contact" data-goto="contact">Discuss a similar project</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="172" id="project-2">
+              <article>
+                <p class="project-meta">Climate research · 2025</p>
+                <h3>Orbit Atlas</h3>
+                <p>An interactive data globe letting researchers scrub 40 years of satellite readings.</p>
+                <p class="tags"><span>WebGL</span><span>Data viz</span></p>
+                <a class="link" href="#contact" data-goto="contact">Discuss a similar project</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="32" id="project-3">
+              <article>
+                <p class="project-meta">Commerce · 2024</p>
+                <h3>Loom &amp; Co.</h3>
+                <p>A storytelling storefront for artisan textiles, with 3D product viewers and fast checkout.</p>
+                <p class="tags"><span>E-commerce</span><span>Three.js</span></p>
+                <a class="link" href="#contact" data-goto="contact">Discuss a similar project</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="280" id="project-4">
+              <article>
+                <p class="project-meta">Mobility · 2024</p>
+                <h3>Kite Mobility</h3>
+                <p>A shared design system powering rider, driver and operations apps across four markets.</p>
+                <p class="tags"><span>Design system</span><span>TypeScript</span></p>
+                <a class="link" href="#contact" data-goto="contact">Discuss a similar project</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="340" id="project-5">
+              <article>
+                <p class="project-meta">Culture · 2024</p>
+                <h3>Solstice Festival</h3>
+                <p>An immersive microsite that sold out three weekends in under a day.</p>
+                <p class="tags"><span>Creative dev</span><span>Motion</span></p>
+                <a class="link" href="#contact" data-goto="contact">Discuss a similar project</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="130" id="project-6">
+              <article>
+                <p class="project-meta">Media · 2023</p>
+                <h3>Field Notes</h3>
+                <p>An editorial CMS and reading experience built for a newsroom of two hundred writers.</p>
+                <p class="tags"><span>CMS</span><span>Accessibility</span></p>
+                <a class="link" href="#contact" data-goto="contact">Discuss a similar project</a>
+              </article>
+            </li>
+          </ol>
+
+          <div class="work-controls" role="group" aria-label="Browse projects">
+            <button type="button" id="work-prev" aria-label="Previous project">←</button>
+            <p class="work-count" aria-live="polite"><span id="work-index">1</span> / <span id="work-total">6</span></p>
+            <button type="button" id="work-next" aria-label="Next project">→</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · MESSAGES (glass shards) -->
+      <section id="approach" class="chapter" data-chapter="approach" aria-labelledby="approach-title">
+        <div class="chapter-inner message-stack">
+          <article class="message" data-message="a">
+            <p class="eyebrow">Our approach</p>
+            <h2 id="approach-title">Design that feels inevitable.</h2>
+            <p>
+              We start with the story and the constraint, then shape every transition, easing curve and
+              interaction until the experience feels like the only way it could have been made.
+            </p>
+          </article>
+          <article class="message message-right" data-message="b">
+            <p class="eyebrow">Our craft</p>
+            <h2>Engineering that holds up.</h2>
+            <p>
+              Fast on a five-year-old phone, readable without JavaScript, and accessible by default.
+              Ambitious visuals never come at the cost of the people using them.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 4 · STUDIO (interactive glass fragments) -->
+      <section id="studio" class="chapter" data-chapter="studio" aria-labelledby="studio-title">
+        <div class="chapter-inner studio-inner">
+          <p class="eyebrow">Inside the studio</p>
+          <h2 id="studio-title">Three ways we work with you.</h2>
+          <p class="lede small">Tap a fragment to learn more.</p>
+          <ul class="fragment-list">
+            <li>
+              <button type="button" class="fragment-btn" data-fragment="0" aria-haspopup="dialog" aria-controls="panel">
+                <span>Strategy</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="fragment-btn" data-fragment="1" aria-haspopup="dialog" aria-controls="panel">
+                <span>Craft</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="fragment-btn" data-fragment="2" aria-haspopup="dialog" aria-controls="panel">
+                <span>Partnership</span>
+              </button>
+            </li>
+          </ul>
+          <!-- Panel copy lives in the DOM so it is indexable and works without WebGL -->
+          <div class="fragment-copy" hidden>
+            <section data-fragment-copy="0">
+              <h3>Strategy</h3>
+              <p>
+                Two-week discovery sprints that turn a vague brief into a clear product story: audience, goals,
+                success measures and a prioritised roadmap you can take to your board.
+              </p>
+              <p>You leave with a prototype, a scope and a realistic budget, whether or not we build it.</p>
+            </section>
+            <section data-fragment-copy="1">
+              <h3>Craft</h3>
+              <p>
+                Interface design, motion and engineering in one team. We prototype in the browser early, so
+                what you approve is what ships, tuned for performance on real devices.
+              </p>
+              <p>Every build is tested on low-end phones and with assistive technology.</p>
+            </section>
+            <section data-fragment-copy="2">
+              <h3>Partnership</h3>
+              <p>
+                After launch we stay close: analytics reviews, quarterly improvements and a shared roadmap.
+                Your team can work with us as a studio, or we embed alongside them.
+              </p>
+              <p>Clear pricing, no lock-in, and full documentation for everything we build.</p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · CONTACT (paper plane finale) -->
+      <section id="contact" class="chapter" data-chapter="contact" aria-labelledby="contact-title">
+        <div class="chapter-inner contact-inner">
+          <p class="eyebrow">Let’s talk</p>
+          <h2 id="contact-title">Ready to take off?</h2>
+          <p class="lede">Tell us what you’re imagining. We reply within one working day.</p>
+          <p>
+            <a class="button" href="mailto:hello@aetherworks.example">hello@aetherworks.example</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year">2026</span> Aetherworks. Placeholder studio and projects for demonstration.</p>
+    </footer>
+
+    <!-- Spacer that provides native scrolling (touch, wheel, keyboard) for the journey -->
+    <div id="scroll-space" aria-hidden="true"></div>
+
+    <!-- Accessible content panel for the glass fragments -->
+    <div id="panel" class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" hidden>
+      <div class="panel-card" tabindex="-1">
+        <button type="button" class="panel-close" id="panel-close" aria-label="Close panel">×</button>
+        <div id="panel-body"></div>
+      </div>
+    </div>
+
+    <!-- Progress + loader (lightweight, shown immediately) -->
+    <div id="loader" class="loader" role="status" aria-live="polite">
+      <span class="loader-bar"><i id="loader-fill"></i></span>
+      <span class="loader-text" id="loader-text">Preparing the experience…</span>
+    </div>
+    <div id="progress" class="progress" aria-hidden="true"><i id="progress-fill"></i></div>
+    <div id="cover" class="cover" aria-hidden="true"></div>
+
+    <noscript>
+      <style>
+        .loader { display: none; }
+      </style>
+    </noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

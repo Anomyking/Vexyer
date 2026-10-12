@@ -1,0 +1,25 @@
+{
+  "name": "portfolio3d",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Scroll-driven cinematic 3D company portfolio (Three.js + GSAP + ScrollTrigger)",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "assets": "blender -b -P blender/export_assets.py -- public/models"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.186.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.3"
+  }
+}

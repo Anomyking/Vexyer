@@ -3,7 +3,7 @@ import { MODULE_RANGES } from '../core/chapters';
 import type { SceneContext, SceneModule } from '../core/context';
 import type { QualitySettings } from '../core/quality';
 import { seeded } from '../core/math';
-import { HERO_GROUP_Y, planHeroCover } from './heroCover';
+import { HERO_GROUP_Y, HERO_YAW, SLAB_DROP, SLAB_TWIST, planHeroCover } from './heroCover';
 
 export const HERO_Y = HERO_GROUP_Y;
 
@@ -106,9 +106,13 @@ export class HeroModule implements SceneModule {
       const dur = 0.115 - i * 0.006;
       const common = { duration: dur, ease: 'power3.inOut', immediateRender: true } as const;
       tl.fromTo(slab.position, { x: sp.x, z: sp.z }, { x: sp.x + sp.openX, z: sp.z + sp.openZ, ...common }, start);
-      // Depth offsets: each slab drops by a different amount so they read as separate masses.
-      tl.fromTo(slab.position, { y: sp.y }, { y: sp.y - (1.5 + i * 1.6), ...common, ease: 'power2.inOut' }, start + 0.008);
-      tl.fromTo(slab.rotation, { x: 0, z: 0 }, { x: (i % 2 ? 1 : -1) * 0.11, z: (i < 2 ? 1 : -1) * 0.09, ...common }, start);
+      // A slight yaw twist (parallel slabs can't clip, unlike the old pitch/roll tilt).
+      tl.fromTo(slab.rotation, { y: HERO_YAW }, { y: HERO_YAW + (i % 2 ? 1 : -1) * SLAB_TWIST, ...common }, start);
+    });
+    // Depth: all slabs sink together on ONE shared tween. Same timing and amount means the vertical
+    // gaps between overlapping layers never change, so they can never interpenetrate.
+    this.slabs.forEach((slab, i) => {
+      tl.fromTo(slab.position, { y: plan.slabs[i].y }, { y: plan.slabs[i].y - SLAB_DROP, duration: 0.11, ease: 'power2.inOut', immediateRender: true }, 0.02);
     });
     // Portal glow rises as the slabs part, then fades once the camera has passed through.
     const o = this.portalMat.uniforms.uOpacity;

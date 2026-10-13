@@ -135,3 +135,56 @@ describe('hero: the reveal', () => {
     expect(spread(0.15)).toBeGreaterThan(spread(0) + 40);
   });
 });
+
+describe('hero: slabs never clip into each other', () => {
+  /** Sample the whole volume of `a` and report any point that lies inside `b` (box shrunk by `eps`, so a visible gap is required). */
+  function penetration(a: THREE.Mesh, b: THREE.Mesh): number {
+    const boxA = a.geometry.boundingBox!;
+    const boxB = b.geometry.boundingBox!;
+    const inv = b.matrixWorld.clone().invert();
+    const eps = 0.05;
+    const pt = new THREE.Vector3();
+    let inside = 0;
+    const n = 14;
+    for (let i = 0; i <= n; i++) {
+      for (let j = 0; j <= n; j++) {
+        for (const ky of [0, 0.5, 1]) {
+          pt.set(
+            boxA.min.x + (boxA.max.x - boxA.min.x) * (i / n),
+            boxA.min.y + (boxA.max.y - boxA.min.y) * ky,
+            boxA.min.z + (boxA.max.z - boxA.min.z) * (j / n),
+          ).applyMatrix4(a.matrixWorld).applyMatrix4(inv);
+          if (
+            pt.x > boxB.min.x - eps && pt.x < boxB.max.x + eps &&
+            pt.y > boxB.min.y - eps && pt.y < boxB.max.y + eps &&
+            pt.z > boxB.min.z - eps && pt.z < boxB.max.z + eps
+          ) inside++;
+        }
+      }
+    }
+    return inside;
+  }
+
+  for (const aspect of [9 / 19, 16 / 9, 21 / 9]) {
+    it(`no slab intersects another at any scroll position, aspect ${aspect.toFixed(2)}`, async () => {
+      const { slabs, at } = await makeHero(aspect);
+      for (let p = 0; p <= 0.2001; p += 0.005) {
+        at(p);
+        for (let i = 0; i < slabs.length; i++) {
+          for (let j = 0; j < slabs.length; j++) {
+            if (i === j) continue;
+            expect(penetration(slabs[i], slabs[j]), `slab ${i} inside slab ${j} at p=${p.toFixed(3)}`).toBe(0);
+          }
+        }
+      }
+    });
+  }
+
+  it('layers keep a visible gap (thicker than a slab) at rest', async () => {
+    const { slabs, at } = await makeHero(16 / 9);
+    at(0);
+    const ys = slabs.map((s) => s.position.y).sort((a, b) => a - b);
+    const thickness = slabs[0].geometry.boundingBox!.getSize(new THREE.Vector3()).y;
+    for (let i = 1; i < ys.length; i++) expect(ys[i] - ys[i - 1]).toBeGreaterThan(thickness + 0.3);
+  });
+});

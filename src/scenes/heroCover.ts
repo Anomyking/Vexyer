@@ -29,8 +29,15 @@ export const OVERLAP = 0.42;
 export const HOLE_HALF = 15;
 /** Slab quadrant (sign along slab-x, sign along slab-z) per slab index. */
 export const QUADRANTS: ReadonlyArray<readonly [number, number]> = [[1, 1], [-1, 1], [1, -1], [-1, -1]];
-/** Resting height of each slab: staggered so overlaps look layered, not coplanar (no z-fighting). */
-export const LIFTS: readonly number[] = [0, 1.0, 0.5, 1.5];
+/**
+ * Resting height of each slab. Neighbours are always at least SLAB_GAP apart, which is more than a
+ * slab is thick (0.7), so overlapping slabs are stacked layers that can never cut into each other.
+ */
+export const LIFTS: readonly number[] = [0, 3.2, 1.6, 4.8];
+/** Every slab sinks by the same amount, in lock-step, so the gaps between layers never change. */
+export const SLAB_DROP = 6;
+/** Small yaw twist while opening (radians). Yaw keeps slabs parallel, so it cannot cause clipping. */
+export const SLAB_TWIST = 0.05;
 
 export interface HeroSlabPlan {
   /** Full size of the slab's footprint in its own frame. */

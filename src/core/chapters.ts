@@ -15,6 +15,9 @@ export const CH = {
   plane: [0.9, 1.0],
 } as const;
 
+/** Camera pose at progress 0. Shared by the camera rig and by the hero layout, which sizes the slabs to cover this view. */
+export const HERO_CAMERA = { px: 0, py: 150, pz: 14, lx: 0, ly: 115, lz: 0, fov: 38 } as const;
+
 /** Portfolio: project `i` is centred when progress equals snapPoint(i). */
 export const PORTFOLIO = { count: 6, start: 0.265, end: 0.525 } as const;
 

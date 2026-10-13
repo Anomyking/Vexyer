@@ -25,10 +25,11 @@ export class LightingModule implements SceneModule {
     this.rim.position.set(-30, 60, -40);
     this.group.add(this.hemi, this.sun, this.sun.target, this.rim);
     const s = this.sun.shadow;
-    s.camera.left = -16; s.camera.right = 16; s.camera.top = 16; s.camera.bottom = -16;
-    s.camera.near = 1; s.camera.far = 90;
+    // Wide enough for the screen-filling hero slabs (see heroCover.ts), which shade each other.
+    s.camera.left = -64; s.camera.right = 64; s.camera.top = 64; s.camera.bottom = -64;
+    s.camera.near = 1; s.camera.far = 130;
     s.bias = -0.0006;
-    s.normalBias = 0.04;
+    s.normalBias = 0.08;
   }
 
   async load(): Promise<void> {}

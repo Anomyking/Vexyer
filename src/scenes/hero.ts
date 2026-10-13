@@ -3,20 +3,23 @@ import { MODULE_RANGES } from '../core/chapters';
 import type { SceneContext, SceneModule } from '../core/context';
 import type { QualitySettings } from '../core/quality';
 import { seeded } from '../core/math';
+import { HERO_GROUP_Y, planHeroCover } from './heroCover';
 
-export const HERO_Y = 115;
+export const HERO_Y = HERO_GROUP_Y;
 
 /**
- * Chapter 1 - the opening. A composed structure of four slabs (from the Blender sketch) that
- * separates with staggered timing, depth offsets and easing, revealing a glowing opening that the
- * camera then travels down through. A starfield sells the "above the clouds" scale.
+ * Chapter 1 - the opening. Four big slabs (from the Blender sketch) are scaled so that, overlapping
+ * and stacked at different heights, they cover the entire first frame (see heroCover.ts). Scrolling
+ * slides them apart with staggered timing, depth offsets and easing, revealing a glowing opening
+ * that the camera then travels down through. A starfield sells the "above the clouds" scale.
  */
 export class HeroModule implements SceneModule {
   readonly id = 'hero';
   readonly group = new THREE.Group();
   readonly range = MODULE_RANGES.hero;
   private slabs: THREE.Mesh[] = [];
-  private base: THREE.Vector3[] = [];
+  /** Unit footprint (x, z) of each slab's geometry, so scaling can target exact world sizes. */
+  private unit: THREE.Vector2[] = [];
   private material = new THREE.MeshStandardMaterial({ color: 0x151a26, metalness: 0.7, roughness: 0.32, envMapIntensity: 1.1 });
   private edgeMaterial = new THREE.MeshBasicMaterial({ color: 0x7cc4ff, transparent: true, opacity: 0.0, depthWrite: false, blending: THREE.AdditiveBlending });
   private portal!: THREE.Mesh;
@@ -38,9 +41,11 @@ export class HeroModule implements SceneModule {
       m.position.copy(part.position);
       m.quaternion.copy(part.quaternion);
       m.castShadow = m.receiveShadow = true;
+      part.geometry.computeBoundingBox();
+      const size = part.geometry.boundingBox!.getSize(new THREE.Vector3());
+      this.unit.push(new THREE.Vector2(Math.max(0.01, size.x), Math.max(0.01, size.z)));
       this.group.add(m);
       this.slabs.push(m);
-      this.base.push(part.position.clone());
     }
 
     // Glowing opening under the slabs: the thing the camera dives into.
@@ -91,17 +96,18 @@ export class HeroModule implements SceneModule {
     this.group.add(this.stars);
   }
 
-  build(tl: gsap.core.Timeline): void {
+  build(tl: gsap.core.Timeline, ctx: SceneContext): void {
+    // Size and place the slabs for the current screen shape (rebuilt whenever the aspect changes).
+    const plan = planHeroCover(ctx.layout.aspect);
     this.slabs.forEach((slab, i) => {
-      const b = this.base[i];
-      const dir = new THREE.Vector3(b.x, 0, b.z).normalize();
+      const sp = plan.slabs[i];
+      slab.scale.set(sp.width / this.unit[i].x, 1, sp.depth / this.unit[i].y);
       const start = 0.015 + i * 0.012; // staggered
       const dur = 0.115 - i * 0.006;
-      const spread = 9 + i * 1.4;
       const common = { duration: dur, ease: 'power3.inOut', immediateRender: true } as const;
-      tl.fromTo(slab.position, { x: b.x, z: b.z }, { x: b.x + dir.x * spread, z: b.z + dir.z * spread, ...common }, start);
+      tl.fromTo(slab.position, { x: sp.x, z: sp.z }, { x: sp.x + sp.openX, z: sp.z + sp.openZ, ...common }, start);
       // Depth offsets: each slab drops by a different amount so they read as separate masses.
-      tl.fromTo(slab.position, { y: 0 }, { y: -(1.5 + i * 1.6), ...common, ease: 'power2.inOut' }, start + 0.008);
+      tl.fromTo(slab.position, { y: sp.y }, { y: sp.y - (1.5 + i * 1.6), ...common, ease: 'power2.inOut' }, start + 0.008);
       tl.fromTo(slab.rotation, { x: 0, z: 0 }, { x: (i % 2 ? 1 : -1) * 0.11, z: (i < 2 ? 1 : -1) * 0.09, ...common }, start);
     });
     // Portal glow rises as the slabs part, then fades once the camera has passed through.

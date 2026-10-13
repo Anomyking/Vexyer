@@ -1,4 +1,4 @@
-import { PORTFOLIO } from './chapters';
+import { HERO_CAMERA, PORTFOLIO } from './chapters';
 import type { SceneContext, Timeline } from './context';
 import { RING_X_END, RING_X_START } from '../scenes/portfolio';
 import { PLANE_SWAP } from '../scenes/plane';
@@ -17,7 +17,7 @@ export function buildCameraRig(tl: Timeline, ctx: SceneContext): void {
   const { start, end } = PORTFOLIO;
 
   const keys: Key[] = [
-    { t: 0.0, p: [0, 150, 14], l: [0, 115, 0], fov: 38 },
+    { t: 0.0, p: [HERO_CAMERA.px, HERO_CAMERA.py, HERO_CAMERA.pz], l: [HERO_CAMERA.lx, HERO_CAMERA.ly, HERO_CAMERA.lz], fov: HERO_CAMERA.fov },
     { t: 0.14, p: [0, 132, 8], l: [0, 112, 0], fov: 38, ease: 'power2.inOut' },
     { t: 0.185, p: [0, 111, 5], l: [0, 100, 0], fov: 40, ease: 'power2.in' }, // through the opening
     { t: 0.23, p: [RING_X_START, 99.4, wd], l: [RING_X_START, 98.4, 0], fov: 40, ease: 'power3.out' },

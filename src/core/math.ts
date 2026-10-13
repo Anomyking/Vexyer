@@ -5,6 +5,13 @@ export const lerp = (a: number, b: number, t: number): number => a + (b - a) * t
 export const inverseLerp = (a: number, b: number, v: number): number => (a === b ? 0 : (v - a) / (b - a));
 export const remap = (v: number, a: number, b: number, c: number, d: number): number => lerp(c, d, clamp(inverseLerp(a, b, v)));
 
+/**
+ * Vertical FOV actually used for a given aspect: widened on portrait screens so the composition
+ * keeps its width. Shared by the engine (rendering) and the hero layout (so slabs cover the frame).
+ */
+export const effectiveFov = (base: number, aspect: number): number =>
+  aspect >= 1 ? base : clamp(base * Math.pow(1 / aspect, 0.55), base, 80);
+
 /** Normalised position of `p` inside [a, b], clamped to 0..1. */
 export const range = (p: number, a: number, b: number): number => clamp(inverseLerp(a, b, p));
 

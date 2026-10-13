@@ -5,7 +5,7 @@ import { PostFX } from '../effects/postfx';
 import { SkyDome } from '../effects/skydome';
 import type { CameraProxy, Layout, SceneContext, SkyProxy } from './context';
 import { QualityManager } from './quality';
-import { clamp } from './math';
+import { clamp, effectiveFov } from './math';
 import type { TrailPose } from '../scenes/plane';
 
 const SCREEN_RADIUS = 15.5;
@@ -99,8 +99,7 @@ export class Engine {
 
   /** Effective vertical FOV: widen on portrait screens so the composition keeps its width. */
   private effectiveFov(base: number): number {
-    const a = this.width / this.height;
-    return a >= 1 ? base : clamp(base * Math.pow(1 / a, 0.55), base, 80);
+    return effectiveFov(base, this.width / this.height);
   }
 
   resize(force = false): void {
@@ -122,6 +121,7 @@ export class Engine {
 
     const L = this.ctx.layout;
     const wasPortrait = L.portrait;
+    const prevAspect = L.aspect;
     L.aspect = w / h;
     L.portrait = L.aspect < 0.95;
     L.screenScale = L.portrait ? 1.05 : 1.35;
@@ -129,7 +129,8 @@ export class Engine {
     const vwPerUnit = 2 * Math.tan((fov * Math.PI) / 360) * L.aspect;
     const frac = L.portrait ? 0.82 : 0.46;
     L.workDistance = clamp(SCREEN_RADIUS + (6.4 * L.screenScale) / (frac * vwPerUnit), 24, 64);
-    if (wasPortrait !== L.portrait || force) this.onResize?.();
+    // The hero slabs are sized from the aspect, so any real change in screen shape rebuilds the timeline.
+    if (wasPortrait !== L.portrait || force || Math.abs(L.aspect - prevAspect) > 0.02) this.onResize?.();
   }
 
   /** Apply the tweened camera proxy (optionally blended toward the chase pose) to the camera. */

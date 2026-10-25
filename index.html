@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en" class="no-gl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Aetherworks — Web design &amp; development: landing pages, e-commerce &amp; immersive 3D sites</title>
+    <meta
+      name="description"
+      content="Websites that look unforgettable and convert. Landing pages, personal sites, e-commerce stores and premium 3D immersive storytelling websites, designed and built to turn visitors into customers. Get a fixed-price quote within one working day."
+    />
+    <meta name="theme-color" content="#05070d" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Aetherworks — Websites that look unforgettable and convert" />
+    <meta property="og:description" content="Landing pages, personal sites, e-commerce and premium 3D immersive websites. Fixed-price quotes within one working day." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Aetherworks — Websites that look unforgettable and convert" />
+    <meta name="twitter:description" content="Landing pages, personal sites, e-commerce and premium 3D immersive websites." />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Aetherworks",
+        "description": "Web design and development studio building landing pages, personal sites, e-commerce stores and premium 3D immersive storytelling websites.",
+        "email": "aiensleyshield@gmail.com",
+        "founder": { "@type": "Person", "name": "Aiensley Shield" },
+        "serviceType": ["Landing page design", "Personal website design", "E-commerce website development", "3D immersive website development"]
+      }
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2305070d'/%3E%3Cpath d='M6 22 26 8 14 26l-2-7z' fill='%23fff'/%3E%3C/svg%3E" />
+    <!-- Loading screen: critical CSS is inline so it paints before any stylesheet or script arrives, and the
+         page content stays hidden (no flash of unstyled HTML) until main.ts unveils it. Without JS the class
+         is never added, so the plain page is shown as normal. -->
+    <script>document.documentElement.classList.add('is-loading');</script>
+    <style>
+      html.is-loading, html.is-loading body { overflow: hidden; background: #05070d; }
+      html.is-loading body > *:not(#loader):not(script):not(noscript) { visibility: hidden; }
+      .loader { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; color: #e8ecf6;
+        background: radial-gradient(60vmax 40vmax at 50% 58%, rgba(58, 110, 255, 0.2), transparent 70%), #05070d;
+        font: 500 14px/1.4 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        clip-path: inset(0 0 0 0); transition: clip-path 0.95s cubic-bezier(0.76, 0, 0.24, 1) 0.2s; }
+      .loader-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; transition: opacity 0.4s ease, transform 0.6s ease; }
+      .loader-mark { width: 44px; height: 44px; color: #fff; animation: loader-pulse 2.4s ease-in-out infinite; }
+      .loader-brand { margin: 0; letter-spacing: 0.32em; text-transform: uppercase; font-size: 12px; opacity: 0.8; }
+      .loader-count { font-size: 64px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+      .loader-count small { font-size: 20px; opacity: 0.5; margin-left: 4px; letter-spacing: 0; }
+      .loader-bar { width: min(240px, 60vw); height: 2px; border-radius: 2px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
+      .loader-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #7cc4ff, #a78bfa); transition: width 0.3s ease; }
+      .loader-text { font-size: 12px; opacity: 0.55; }
+      .loader.is-done { clip-path: inset(0 0 100% 0); pointer-events: none; }
+      .loader.is-done .loader-inner { opacity: 0; transform: translateY(-14px); }
+      @keyframes loader-pulse { 50% { transform: scale(1.08); opacity: 0.75; } }
+      @media (prefers-reduced-motion: reduce) {
+        .loader { clip-path: none; transition: opacity 0.4s ease; }
+        .loader.is-done { clip-path: none; opacity: 0; }
+        .loader-mark { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#hero" data-goto="hero" aria-label="Aetherworks, back to top">
+        <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path d="M3 21 29 5 15 29l-3-8z" fill="currentColor" /></svg>
+        <span>Aetherworks</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#work" data-goto="work" data-nav="work">Work</a></li>
+          <li><a href="#process" data-goto="process" data-nav="process">Process</a></li>
+          <li><a href="#approach" data-goto="why" data-nav="why">Why me</a></li>
+          <li><a href="#studio" data-goto="services" data-nav="services">Services</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="header-cta" href="#contact-form" data-scrollto="contact-form" data-nav="contact-form">Get a quote</a>
+        <button type="button" class="motion-toggle" id="motion-toggle" aria-pressed="false">
+          <span class="sr-only">Reduce motion</span><span aria-hidden="true">Motion: on</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- WebGL canvas: purely decorative, all content below is real HTML -->
+    <canvas id="gl" aria-hidden="true"></canvas>
+
+    <main id="content">
+      <!-- 1 · HERO -->
+      <section id="hero" class="chapter" data-chapter="hero" aria-labelledby="hero-title">
+        <div class="chapter-inner hero-inner">
+          <p class="eyebrow">Web design &amp; development</p>
+          <h1 id="hero-title">Websites that look unforgettable and <em>convert</em>.</h1>
+          <p class="lede">
+            Landing pages, personal sites, e-commerce stores and immersive 3D experiences, designed and built to
+            turn visitors into customers.
+          </p>
+          <p class="cta-row">
+            <a class="button" href="mailto:aiensleyshield@gmail.com?subject=Project%20enquiry&amp;body=Hi%20Aiensley%2C%0A%0AI%27d%20like%20a%20quote%20for%20a%20website.%0A%0AWhat%20I%20need%3A%20%0AMy%20goal%3A%20%0A">Get a free quote</a>
+            <a class="button button-ghost" href="#work" data-goto="work">See the work</a>
+          </p>
+          <p class="micro">Free intro call · Fixed-price quotes · You own everything</p>
+          <p class="scroll-cue" aria-hidden="true"><span></span>Scroll to enter</p>
+        </div>
+      </section>
+
+      <!-- 1b · DIVE (caption while the camera dives to the work) -->
+      <section id="dive" class="chapter" data-chapter="dive" aria-hidden="true">
+        <div class="chapter-inner dive-inner">
+          <p class="dive-line">Five live projects. One standard.</p>
+        </div>
+      </section>
+
+      <!-- 2 · PORTFOLIO -->
+      <section id="work" class="chapter" data-chapter="work" aria-labelledby="work-title">
+        <div class="chapter-inner work-inner">
+          <div class="work-head">
+            <p class="eyebrow">Selected work</p>
+            <h2 id="work-title">Real projects, one standard.</h2>
+          </div>
+
+          <ol class="projects" aria-label="Selected projects">
+            <li class="project" data-project data-hue="32" id="project-1">
+              <article>
+                <p class="project-meta">Travel · Safari agency</p>
+                <h3>Select Safari Planner</h3>
+                <p>A Kenya safari agency site: curated journeys, a “day on safari” story and an enquiry form that turns browsers into bookings.</p>
+                <p class="tags"><span>Travel</span><span>Storytelling</span><span>Enquiry form</span></p>
+                <a class="link" href="#contact-form" data-scrollto="contact-form">Get a site like this</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="340" id="project-2">
+              <article>
+                <p class="project-meta">Events · Celebrations</p>
+                <h3>Scionic</h3>
+                <p>An anniversary and celebration planning site with clear packages, services and a simple route to book.</p>
+                <p class="tags"><span>Events</span><span>Framer</span><span>Lead generation</span></p>
+                <a class="link" href="https://scionictech.framer.website/" target="_blank" rel="noopener noreferrer">Visit live site ↗</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="172" id="project-3">
+              <article>
+                <p class="project-meta">Luxury · Jewelry</p>
+                <h3>Autum</h3>
+                <p>A luxury jewelry storefront presenting featured pieces, reviews and trust signals in a refined, premium layout.</p>
+                <p class="tags"><span>E-commerce</span><span>Brand design</span><span>Framer</span></p>
+                <a class="link" href="https://jewelprime.framer.website/" target="_blank" rel="noopener noreferrer">Visit live site ↗</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="212" id="project-4">
+              <article>
+                <p class="project-meta">B2B · Marketing analytics</p>
+                <h3>Sphynx Global</h3>
+                <p>A marketing analytics firm’s site explaining services from paid media to attribution and forecasting, in plain language.</p>
+                <p class="tags"><span>Corporate site</span><span>Services</span><span>Analytics</span></p>
+                <a class="link" href="https://sphynxglobal.com" target="_blank" rel="noopener noreferrer">Visit live site ↗</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="280" id="project-5">
+              <article>
+                <p class="project-meta">Live project · Web build</p>
+                <h3>Touch Creations</h3>
+                <p>A custom-built web project, deployed and live.</p>
+                <p class="tags"><span>Web build</span><span>Live</span></p>
+                <a class="link" href="https://touch-creations.onrender.com/" target="_blank" rel="noopener noreferrer">Visit live site ↗</a>
+              </article>
+            </li>
+            <li class="project" data-project data-hue="130" id="project-6">
+              <article>
+                <p class="project-meta">This site · Immersive 3D</p>
+                <h3>Aetherworks</h3>
+                <p>The scroll-driven 3D experience you are inside right now: cinematic storytelling that still loads fast and works without 3D.</p>
+                <p class="tags"><span>Three.js</span><span>Immersive</span></p>
+                <a class="link" href="#contact-form" data-scrollto="contact-form">Get an experience like this</a>
+              </article>
+            </li>
+          </ol>
+
+          <div class="work-controls" role="group" aria-label="Browse projects">
+            <button type="button" id="work-prev" aria-label="Previous project">←</button>
+            <p class="work-count" aria-live="polite"><span id="work-index">1</span> / <span id="work-total">6</span></p>
+            <button type="button" id="work-next" aria-label="Next project">→</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · PROCESS (gates in the cloud sea) -->
+      <section id="process" class="chapter" data-chapter="process" aria-labelledby="process-title">
+        <div class="chapter-inner process-inner">
+          <p class="eyebrow">How it works</p>
+          <h2 id="process-title">Four steps, no surprises.</h2>
+          <ol class="steps-list">
+            <li class="step-item" data-step="0"><button type="button" class="step-btn" data-step-goto="0"><span class="step-n">1</span><span class="step-t"><strong>Intro call</strong><span class="step-d">A free 20–30 minute chat about your goals, audience and timeline. No pressure, no jargon.</span></span></button></li>
+            <li class="step-item" data-step="1"><button type="button" class="step-btn" data-step-goto="1"><span class="step-n">2</span><span class="step-t"><strong>Plan &amp; fixed quote</strong><span class="step-d">Within one working day: a clear scope, timeline and one price, so the total is known before work begins.</span></span></button></li>
+            <li class="step-item" data-step="2"><button type="button" class="step-btn" data-step-goto="2"><span class="step-n">3</span><span class="step-t"><strong>Design &amp; build</strong><span class="step-d">You see real progress in the browser throughout, not just mock-ups, and give feedback while it is easy to act on.</span></span></button></li>
+            <li class="step-item" data-step="3"><button type="button" class="step-btn" data-step-goto="3"><span class="step-n">4</span><span class="step-t"><strong>Launch &amp; grow</strong><span class="step-d">Tested, polished and live. Afterwards, take the keys or keep me on for improvements and care.</span></span></button></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 4 · WHY ME (glass shards) -->
+      <section id="approach" class="chapter" data-chapter="approach" aria-labelledby="approach-title">
+        <div class="chapter-inner message-stack">
+          <article class="message" data-message="a">
+            <p class="eyebrow">Why it works</p>
+            <div class="reasons">
+                <div class="reason is-on"><h2 id="approach-title">Conversion-first.</h2><p>Every section has a job: build trust, answer objections and make the next step obvious.</p></div>
+                <div class="reason"><h2>Fast on every phone.</h2><p>Lean code and optimised media, tested on real low-end devices, because slow sites lose customers.</p></div>
+                <div class="reason"><h2>Built to be found.</h2><p>Clean structure, proper metadata and accessible markup give search engines and people what they need.</p></div>
+            </div>
+            <div class="dots" role="group" aria-label="Reasons"><button type="button" class="dot is-on" data-dot="0" aria-label="Reason 1"></button><button type="button" class="dot" data-dot="1" aria-label="Reason 2"></button><button type="button" class="dot" data-dot="2" aria-label="Reason 3"></button></div>
+          </article>
+          <article class="message message-right" data-message="b">
+            <p class="eyebrow">Why work with me</p>
+            <div class="reasons">
+                <div class="reason is-on"><h2>You own everything.</h2><p>Design, code and content are yours, handed over with documentation. No lock-in.</p></div>
+                <div class="reason"><h2>Fixed price, no surprises.</h2><p>You get a clear scope and one price before any work starts.</p></div>
+                <div class="reason"><h2>A direct line.</h2><p>You talk to the person building your site, not an account manager.</p></div>
+            </div>
+            <div class="dots" role="group" aria-label="Reasons"><button type="button" class="dot is-on" data-dot="0" aria-label="Reason 1"></button><button type="button" class="dot" data-dot="1" aria-label="Reason 2"></button><button type="button" class="dot" data-dot="2" aria-label="Reason 3"></button></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 5 · SERVICES (interactive glass fragments) -->
+      <section id="studio" class="chapter" data-chapter="studio" aria-labelledby="studio-title">
+        <div class="chapter-inner studio-inner">
+          <p class="eyebrow">What I build</p>
+          <h2 id="studio-title">Three ways to grow online.</h2>
+          <p class="lede small">Tap a crystal to explore a service.</p>
+          <ul class="fragment-list">
+            <li>
+              <button type="button" class="fragment-btn" data-fragment="0" aria-haspopup="dialog" aria-controls="panel">
+                <span>Landing &amp; personal sites</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="fragment-btn" data-fragment="1" aria-haspopup="dialog" aria-controls="panel">
+                <span>E-commerce</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="fragment-btn" data-fragment="2" aria-haspopup="dialog" aria-controls="panel">
+                <span>Immersive 3D</span>
+              </button>
+            </li>
+          </ul>
+          <!-- Panel copy lives in the DOM so it is indexable and works without WebGL -->
+          <div class="fragment-copy" hidden>
+            <section data-fragment-copy="0">
+              <h3>Landing pages &amp; personal sites</h3>
+              <p>
+                Focused, fast pages that explain what you do, build trust and make the next step obvious. Ideal for
+                launches, campaigns, consultants, freelancers and creatives.
+              </p>
+              <ul class="ticks">
+                <li>Conversion-focused copy structure and layout</li>
+                <li>Mobile-first, fast-loading and SEO-ready</li>
+                <li>Contact, booking or sign-up built in</li>
+              </ul>
+              <ul class="ticks"><li>Redesigning an existing site? I audit it first and keep what works.</li><li>You own the design, code and content.</li></ul>
+              <p class="note">Typical timeline: 1–3 weeks · Fixed-price quote</p>
+              <a class="button" href="mailto:aiensleyshield@gmail.com?subject=Landing%20page%20or%20personal%20site&amp;body=Hi%20Aiensley%2C%0A%0AI%27d%20like%20a%20landing%20page%20or%20personal%20site.%0A%0AAbout%20me%2Fmy%20business%3A%20%0AMy%20goal%3A%20">Get a quote</a>
+            </section>
+            <section data-fragment-copy="1">
+              <h3>E-commerce</h3>
+              <p>
+                Online stores that are a pleasure to browse and easy to buy from, with product pages that sell and a
+                checkout without friction.
+              </p>
+              <ul class="ticks">
+                <li>Custom storefront design and product storytelling</li>
+                <li>Secure payments, shipping and inventory set-up</li>
+                <li>Speed and mobile checkout tuned for sales</li>
+              </ul>
+              <ul class="ticks"><li>Easy for you to manage after launch, with a short training session</li><li>You own the store design and code</li></ul>
+              <p class="note">Typical timeline: 4–8 weeks · Fixed-price quote</p>
+              <a class="button" href="mailto:aiensleyshield@gmail.com?subject=E-commerce%20store&amp;body=Hi%20Aiensley%2C%0A%0AI%27d%20like%20an%20online%20store.%0A%0AWhat%20I%20sell%3A%20%0AApprox.%20number%20of%20products%3A%20">Get a quote</a>
+            </section>
+            <section data-fragment-copy="2">
+              <h3>Immersive 3D storytelling</h3>
+              <p>
+                Premium, scroll-driven 3D experiences that make a brand unforgettable, like the one you just flew
+                through. Built to run well on real devices and to fall back gracefully where 3D can't run.
+              </p>
+              <ul class="ticks">
+                <li>Concept, storyboard and custom 3D scenes</li>
+                <li>Cinematic motion with performance budgets</li>
+                <li>Accessible, with a clean no-3D fallback</li>
+              </ul>
+              <ul class="ticks"><li>Adapts to the visitor’s device and respects reduced-motion settings</li><li>You own the scenes, assets and code</li></ul>
+              <p class="note">Typical timeline: 6–12 weeks · Fixed-price quote</p>
+              <a class="button" href="mailto:aiensleyshield@gmail.com?subject=Immersive%203D%20website&amp;body=Hi%20Aiensley%2C%0A%0AI%27d%20like%20to%20talk%20about%20an%20immersive%203D%20website.%0A%0AThe%20story%20I%20want%20to%20tell%3A%20%0AMy%20timeline%3A%20">Get a quote</a>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · CONTACT (paper plane finale: pick a destination) -->
+      <section id="contact" class="chapter" data-chapter="contact" aria-labelledby="contact-title">
+        <div class="chapter-inner contact-inner">
+          <p class="eyebrow">Pick your destination</p>
+          <h2 id="contact-title">Ready to take off?</h2>
+          <p class="lede">Choose a ring to start your project. You’ll get a free, fixed-price quote within one working day.</p>
+          <ul class="dest-list">
+            <li><button type="button" class="dest-btn" data-dest="0" data-type="Landing page"><span>Landing or personal site</span></button></li>
+            <li><button type="button" class="dest-btn" data-dest="1" data-type="E-commerce store"><span>E-commerce store</span></button></li>
+            <li><button type="button" class="dest-btn" data-dest="2" data-type="Immersive 3D website"><span>Immersive 3D site</span></button></li>
+          </ul>
+          <p class="alt-mail">Or email <a href="mailto:aiensleyshield@gmail.com?subject=Project%20enquiry&amp;body=Hi%20Aiensley%2C%0A%0AI%27d%20like%20to%20start%20a%20project.%0A%0AWhat%20I%20need%3A%20%0AMy%20goal%3A%20%0A">aiensleyshield@gmail.com</a></p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Spacer that provides native scrolling (touch, wheel, keyboard) for the journey -->
+    <div id="scroll-space" aria-hidden="true"></div>
+
+    <!-- Everything below the 3D journey is normal, opaque page flow -->
+    <div id="after" class="after">
+      <div class="after-gap" aria-hidden="true"></div>
+      <div class="after-body">
+        <section id="contact-form" class="section section-contact" data-after aria-labelledby="form-title">
+          <div class="wrap contact-grid">
+            <div class="reveal">
+              <p class="eyebrow">Start your project</p>
+              <h2 id="form-title">Let’s make something great.</h2>
+              <p class="lede">Share a few details and your email app will open with the message ready to send. You’ll hear back with next steps and a fixed-price quote within one working day.</p>
+              <ul class="ticks">
+                <li>Free intro call, no obligation</li>
+                <li>Fixed-price quote within one working day</li>
+              </ul>
+              <p class="direct">
+                Prefer to write directly?<br />
+                <a class="direct-mail" id="direct-mail" href="mailto:aiensleyshield@gmail.com">aiensleyshield@gmail.com</a>
+                <button type="button" class="copy-btn" id="copy-email" data-email="aiensleyshield@gmail.com">Copy address</button>
+              </p>
+            </div>
+            <form class="form reveal" id="brief-form" action="mailto:aiensleyshield@gmail.com" method="post" enctype="text/plain" novalidate>
+              <div class="field">
+                <label for="f-name">Your name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="f-email">Your email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="f-type">What do you need?</label>
+                <select id="f-type" name="type">
+                  <option>Landing page</option>
+                  <option>Personal or portfolio site</option>
+                  <option>E-commerce store</option>
+                  <option>Immersive 3D website</option>
+                  <option>Redesign of my current site</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-budget">Budget <span>(optional)</span></label>
+                <select id="f-budget" name="budget">
+                  <option>Not sure yet</option>
+                  <option>Under $1,000</option>
+                  <option>$1,000 – $3,000</option>
+                  <option>$3,000 – $8,000</option>
+                  <option>$8,000+</option>
+                </select>
+              </div>
+              <div class="field field-wide">
+                <label for="f-message">Tell me about your project</label>
+                <textarea id="f-message" name="message" rows="5" required placeholder="What are you building, who is it for, and what should it achieve?"></textarea>
+              </div>
+              <div class="field-wide form-actions">
+                <button type="submit" class="button button-submit">Open in my email app</button>
+                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="wrap footer-grid">
+            <div>
+              <p class="footer-brand"><svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path d="M3 21 29 5 15 29l-3-8z" fill="currentColor" /></svg> Aetherworks</p>
+              <p class="footer-line">Web design &amp; development for brands that want to be remembered.</p>
+            </div>
+            <nav aria-label="Footer">
+              <ul>
+                <li><a href="#work" data-goto="work">Work</a></li>
+                <li><a href="#process" data-goto="process">Process</a></li>
+                <li><a href="#studio" data-goto="services">Services</a></li>
+                <li><a href="mailto:aiensleyshield@gmail.com">aiensleyshield@gmail.com</a></li>
+              </ul>
+            </nav>
+            <div class="footer-loop">
+              <button type="button" class="loop-btn" id="loop-btn">↑ Fly the journey again</button>
+              <p class="loop-hint">Keep scrolling and you’ll lift off from the start.</p>
+            </div>
+          </div>
+          <p class="footer-legal">© <span id="year">2026</span> Aetherworks · Aiensley Shield. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Accessible content panel for the glass fragments -->
+    <div id="panel" class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" hidden>
+      <div class="panel-card" tabindex="-1">
+        <button type="button" class="panel-close" id="panel-close" aria-label="Close panel">×</button>
+        <div id="panel-body"></div>
+      </div>
+    </div>
+
+    <!-- Progress + loader (lightweight, shown immediately) -->
+    <div id="loader" class="loader" role="status" aria-live="polite" aria-busy="true">
+      <div class="loader-inner">
+        <svg class="loader-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 21 29 5 15 29l-3-8z" fill="currentColor" /></svg>
+        <p class="loader-brand">Aetherworks</p>
+        <div class="loader-count" aria-hidden="true"><span id="loader-pct">0</span><small>%</small></div>
+        <span class="loader-bar" aria-hidden="true"><i id="loader-fill"></i></span>
+        <span class="loader-text" id="loader-text">Preparing the experience…</span>
+      </div>
+    </div>
+    <div id="progress" class="progress" aria-hidden="true"><i id="progress-fill"></i></div>
+    <div id="cover" class="cover" aria-hidden="true"></div>
+    <div id="loop-veil" class="loop-veil" aria-hidden="true"></div>
+
+    <noscript>
+      <style>
+        .loader { display: none; }
+        .reveal { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+      // Safety net: if the app script never runs (blocked, offline), do not leave the page hidden behind the loader.
+      setTimeout(function () {
+        var l = document.getElementById('loader');
+        if (l && !l.classList.contains('is-done')) {
+          document.documentElement.classList.remove('is-loading');
+          l.classList.add('is-done');
+        }
+      }, 30000);
+    </script>
+  </body>
+</html>

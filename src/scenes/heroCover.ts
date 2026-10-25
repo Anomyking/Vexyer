@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { HERO_CAMERA } from '../core/chapters';
-import { effectiveFov } from '../core/math';
+import { effectiveFov } from '../core/view';
+import { HERO_CAM, HERO_FOV, HERO_Y } from './heroLayout';
 
 /**
  * Layout for the opening: four overlapping slabs that together cover the *entire* first frame,
@@ -61,7 +61,7 @@ export interface HeroCoverPlan {
 
 /** Where the viewport border lands on the slab plane, in group-local world x/z. */
 export function heroFootprint(aspect: number, margin = COVER_MARGIN): THREE.Vector2[] {
-  const c = HERO_CAMERA;
+  const c = { px: 0, py: HERO_CAM.py, pz: HERO_CAM.pz, lx: 0, ly: HERO_Y, lz: 0, fov: HERO_FOV };
   const cam = new THREE.PerspectiveCamera(effectiveFov(c.fov, aspect), aspect, 0.1, 2000);
   cam.position.set(c.px, c.py, c.pz);
   cam.lookAt(c.lx, c.ly, c.lz);

@@ -26,7 +26,7 @@ const frag = /* glsl */ `
     float az = atan(dir.x, -dir.z);
     float curtain = 0.55 * pow(0.5 + 0.5 * cos(az * 9.0 + 0.8), 4.0) + 0.45 * pow(0.5 + 0.5 * cos(az * 5.0 - 1.7), 5.0);
     float near = 1.0 - smoothstep(18.0, 200.0, d);
-    vec3 col = vec3(0.025, 0.0, 0.006) + vec3(0.7, 0.0, 0.012) * curtain * (0.12 + 0.55 * (1.0 - near));
+    vec3 col = vec3(0.0235, 0.0000, 0.0078) + vec3(0.8314, 0.6863, 0.2157) * curtain * (0.12 + 0.55 * (1.0 - near));
     float a = uStage * (0.30 + 0.5 * near) * (1.0 - smoothstep(300.0, 900.0, d));
     gl_FragColor = vec4(col, a);
     #include <tonemapping_fragment>

@@ -11,7 +11,7 @@ export class Hud {
   constructor(private engine: Engine, private quality: QualityManager) {
     Object.assign(this.el.style, {
       position: 'fixed', left: '8px', bottom: '8px', zIndex: '99', margin: '0', padding: '6px 8px',
-      font: '11px/1.35 ui-monospace, monospace', color: '#9fe8ff', background: 'rgba(0,0,0,.6)', borderRadius: '6px', pointerEvents: 'none',
+      font: '11px/1.35 ui-monospace, monospace', color: '#d4af37', background: 'rgba(0, 0, 0,.6)', borderRadius: '6px', pointerEvents: 'none',
     } as CSSStyleDeclaration);
     document.body.appendChild(this.el);
   }

@@ -133,9 +133,9 @@ export class GlassLabel {
     ctx.translate(W / 2, H / 2);
     ctx.scale(W / H, 1);
     const g = ctx.createRadialGradient(0, 0, 0, 0, 0, H * 0.5);
-    g.addColorStop(0, 'rgba(20, 0, 6, 0.26)');
-    g.addColorStop(0.6, 'rgba(20, 0, 6, 0.10)');
-    g.addColorStop(1, 'rgba(20, 0, 6, 0)');
+    g.addColorStop(0, 'rgba(5, 5, 5, 0.26)');
+    g.addColorStop(0.6, 'rgba(5, 5, 5, 0.10)');
+    g.addColorStop(1, 'rgba(5, 5, 5, 0)');
     ctx.fillStyle = g;
     ctx.fillRect(-H / 2, -H / 2, H, H);
     ctx.restore();
@@ -144,10 +144,10 @@ export class GlassLabel {
       ctx.font = font;
       (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = spacing;
       // pass 1: dark contact shadow; pass 2: white with a faint glow
-      ctx.shadowColor = 'rgba(24, 0, 6, 0.6)';
+      ctx.shadowColor = 'rgba(6, 6, 6, 0.6)';
       ctx.shadowBlur = 16 * u;
       ctx.shadowOffsetY = 3 * u;
-      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.fillStyle = `rgba(255, 255, 255,${alpha})`;
       ctx.fillText(text, x, yy);
       ctx.shadowColor = 'rgba(255, 255, 255, 0.35)';
       ctx.shadowBlur = 22 * u;
@@ -169,9 +169,9 @@ export class GlassLabel {
     }
     if (meta) {
       y += 54 * u - bodyPx * 0.3;
-      ctx.shadowColor = 'rgba(24,0,6,0.5)';
+      ctx.shadowColor = 'rgba(6, 6, 6,0.5)';
       ctx.shadowBlur = 8 * u;
-      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.fillStyle = 'rgba(255, 255, 255,0.95)';
       ctx.fillRect(padX, y - metaPx * 0.35, 64 * u, 2 * u); // hairline rule
       ctx.shadowBlur = 0;
       paint(meta.toUpperCase(), padX + 84 * u, y, `500 ${metaPx}px ${SERIF}`, 0.85, `${0.18 * metaPx}px`);

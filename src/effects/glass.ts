@@ -55,23 +55,23 @@ const frag = /* glsl */ `
 
   vec3 skyColor(vec3 d) {
     float h = clamp(d.y * 0.5 + 0.5, 0.0, 1.0);
-    vec3 day = mix(vec3(0.80, 0.90, 1.0), vec3(0.16, 0.42, 0.92), pow(h, 0.8));
-    vec3 night = mix(vec3(0.05, 0.08, 0.18), vec3(0.01, 0.015, 0.04), h);
+    vec3 day = mix(vec3(0.72), vec3(0.08), pow(h, 0.8));
+    vec3 night = mix(vec3(0.0784, 0.0784, 0.0784), vec3(0.012), h);
     vec3 c = mix(day, night, uSpace);
     float sun = pow(max(dot(d, normalize(uSun)), 0.0), 40.0);
-    return c + vec3(1.0, 0.95, 0.85) * sun * 1.2;
+    return c + vec3(1.0000, 1.0000, 1.0000) * sun * 1.2;
   }
 
-  // Dark crimson room with tall light beams: bright where a facet mirrors a beam, deep red elsewhere.
+  // Black and gold room with tall light beams: bright where a facet mirrors a beam, dark elsewhere.
   vec3 stageColor(vec3 d) {
     float az = atan(d.x, -d.z);
     float beams = pow(0.5 + 0.5 * cos(az * 2.0 + 0.7 + uSeed * 0.3), 5.0) * 1.0
                 + pow(0.5 + 0.5 * cos(az * 3.0 - 1.3 + uSeed), 12.0) * 1.1;
     float mid = 1.0 - abs(d.y);
     float top = smoothstep(0.15, 1.0, d.y);
-    vec3 base = vec3(0.30, 0.012, 0.03) * (0.35 + 0.65 * mid);
-    vec3 hot = vec3(1.0, 0.13, 0.10) * beams * (0.5 + 0.5 * mid);
-    return base + hot + vec3(1.0, 0.5, 0.45) * top * 0.5;
+    vec3 base = vec3(0.0745, 0.0745, 0.0745) * (0.35 + 0.65 * mid);
+    vec3 hot = vec3(0.8314, 0.6863, 0.2157) * beams * (0.5 + 0.5 * mid);
+    return base + hot + vec3(0.8314, 0.6863, 0.2157) * top * 0.5;
   }
 
   vec3 envColor(vec3 d) { return mix(skyColor(d), stageColor(d), uStage); }
@@ -96,8 +96,8 @@ const frag = /* glsl */ `
                        envColor(T).g,
                        envColor(normalize(T - vec3(0.04, 0.0, 0.0))).b);
     #endif
-    vec3 tint = mix(uTint, vec3(1.0, 0.42, 0.42), uStage);
-    vec3 edgeCol = mix(uEdge, vec3(1.0, 0.80, 0.74), uStage);
+    vec3 tint = mix(uTint, vec3(0.8314, 0.6863, 0.2157), uStage);
+    vec3 edgeCol = mix(uEdge, vec3(0.8314, 0.6863, 0.2157), uStage);
     vec3 body = refr * mix(vec3(1.0), tint, 0.6) + tint * 0.05;
     body *= 1.0 - 0.28 * (1.0 - uStage); // daylight glass reads as a deeper, clearer blade against bright sky
 
@@ -115,12 +115,12 @@ const frag = /* glsl */ `
     float rim = pow(f, 4.0);
 
     // Each facet gets its own brightness from a fixed key light (flat normals), so the body reads as cut
-    // solid glass; on the stage the body is also filled with deep red so it is not just an outline.
+    // solid glass; on the stage the body is also filled with warm gold so it is not just an outline.
     float facetL = pow(max(dot(n, normalize(vec3(0.45, 0.8, 0.55))), 0.0), 1.4);
     body += tint * facetL * (0.12 + 0.3 * uStage);
-    body = mix(body, tint * vec3(0.8, 0.05, 0.07) * (0.35 + 0.9 * facetL), uStage * 0.8);
+    body = mix(body, tint * vec3(0.8314, 0.6863, 0.2157) * (0.35 + 0.9 * facetL), uStage * 0.8);
     vec3 col = mix(body, refl, F);
-    col += vec3(1.0, 0.98, 0.94) * glint + vec3(1.0, 0.85, 0.8) * flash * 0.8;
+    col += vec3(1.0000, 1.0000, 1.0000) * glint + vec3(0.8314, 0.6863, 0.2157) * flash * 0.8;
     col += edgeCol * edge * (0.16 + 0.8 * f + 0.4 * uGlow) + edgeCol * rim * 0.2;
     col += tint * uGlow * 0.25;
 
@@ -129,7 +129,7 @@ const frag = /* glsl */ `
     #ifdef EDGE_ONLY
       // Overlay on top of a real transmissive body: draw only the sharp facet edges, glints and flashes.
       a = edge * (0.3 + 0.6 * f) * side + glint * 0.5 + flash * 0.3 + uGlow * 0.1;
-      col = edgeCol * (0.85 + 0.6 * f) + vec3(1.0, 0.98, 0.94) * glint + vec3(1.0, 0.85, 0.8) * flash * 0.8;
+      col = edgeCol * (0.85 + 0.6 * f) + vec3(1.0000, 1.0000, 1.0000) * glint + vec3(0.8314, 0.6863, 0.2157) * flash * 0.8;
     #endif
     col *= mix(1.0, 0.5, uMirror);
     a *= mix(1.0, exp(-abs(vWY - uFloorY) * 0.45), uMirror); // reflections fade with distance from the floor
@@ -157,8 +157,8 @@ export function createGlassMaterial(o: GlassOptions = {}): THREE.ShaderMaterial 
     vertexShader: vert,
     fragmentShader: frag,
     uniforms: {
-      uTint: { value: new THREE.Color(o.tint ?? 0xa9d8ff) },
-      uEdge: { value: new THREE.Color(o.edge ?? 0xdff3ff) },
+      uTint: { value: new THREE.Color(o.tint ?? 0xd4af37) },
+      uEdge: { value: new THREE.Color(o.edge ?? 0xffffff) },
       uSun: { value: new THREE.Vector3(0.42, 0.44, -0.9).normalize() },
       uTime: { value: 0 },
       uOpacity: { value: o.opacity ?? 1 },

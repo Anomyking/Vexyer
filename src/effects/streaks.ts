@@ -74,7 +74,7 @@ export class Streaks {
         uTravel: { value: 0 },
         uDepth: { value: depth },
         uSpeed: { value: 0 },
-        uColor: { value: new THREE.Color(0xeaf4ff) },
+        uColor: { value: new THREE.Color(0xffffff) },
       },
       transparent: true,
       depthWrite: false,

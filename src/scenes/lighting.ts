@@ -12,12 +12,12 @@ export class LightingModule implements SceneModule {
   readonly id = 'lighting';
   readonly group = new THREE.Group();
   readonly range = [0, 1] as const;
-  private hemi = new THREE.HemisphereLight(0xbcd7ff, 0x1a2036, 0.4);
+  private hemi = new THREE.HemisphereLight(0xd4af37, 0x202020, 0.4);
   private sun = new THREE.DirectionalLight(0xffffff, 2.2);
-  private rim = new THREE.DirectionalLight(0x7cc4ff, 0.9);
-  private night = new THREE.Color(0x9db7ff);
-  private day = new THREE.Color(0xfff4e0);
-  private dusk = new THREE.Color(0xffb27a);
+  private rim = new THREE.DirectionalLight(0xd4af37, 0.9);
+  private night = new THREE.Color(0xd4af37);
+  private day = new THREE.Color(0xffffff);
+  private dusk = new THREE.Color(0xd4af37);
 
   constructor() {
     this.sun.position.set(18, 150, 26);

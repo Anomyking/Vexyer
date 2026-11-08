@@ -20,9 +20,9 @@ function radialTexture(): THREE.CanvasTexture {
   const g = c.getContext('2d');
   if (g) {
     const grd = g.createRadialGradient(64, 64, 4, 64, 64, 64);
-    grd.addColorStop(0, 'rgba(190,225,255,0.0)');
-    grd.addColorStop(0.7, 'rgba(90,140,255,0.16)');
-    grd.addColorStop(1, 'rgba(90,140,255,0.0)');
+    grd.addColorStop(0, 'rgba(212, 175, 55,0.0)');
+    grd.addColorStop(0.7, 'rgba(212, 175, 55,0.16)');
+    grd.addColorStop(1, 'rgba(212, 175, 55,0.0)');
     g.fillStyle = grd;
     g.fillRect(0, 0, 128, 128);
   }
@@ -38,11 +38,11 @@ function numeralTexture(n: number): THREE.CanvasTexture {
   if (g) {
     g.clearRect(0, 0, 128, 128);
     g.lineWidth = 5;
-    g.strokeStyle = '#2f6bff';
+    g.strokeStyle = '#d4af37';
     g.beginPath();
     g.arc(64, 64, 52, 0, Math.PI * 2);
     g.stroke();
-    g.fillStyle = '#2f6bff';
+    g.fillStyle = '#d4af37';
     g.font = '600 64px ui-sans-serif, system-ui, sans-serif';
     g.textAlign = 'center';
     g.textBaseline = 'middle';
@@ -86,8 +86,8 @@ export class GatesModule implements SceneModule {
     const glow = { ...base, blending: THREE.AdditiveBlending } as const;
     GATE_PROGRESS.forEach((_, i) => {
       const group = new THREE.Group();
-      const m1 = new THREE.MeshBasicMaterial({ color: 0x2f6bff, ...base });
-      const m2 = new THREE.MeshBasicMaterial({ color: 0x8a6bff, ...base });
+      const m1 = new THREE.MeshBasicMaterial({ color: 0xd4af37, ...base });
+      const m2 = new THREE.MeshBasicMaterial({ color: 0xd4af37, ...base });
       const m3 = new THREE.MeshBasicMaterial({ map: halo, ...glow });
       const num = numeralTexture(i + 1);
       const m4 = new THREE.MeshBasicMaterial({ map: num, transparent: true, depthWrite: false, depthTest: false, toneMapped: false });

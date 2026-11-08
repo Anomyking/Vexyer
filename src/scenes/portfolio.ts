@@ -40,9 +40,9 @@ export class PortfolioModule implements SceneModule {
   /** Tweened by the master timeline: u = 0..1 across the portfolio; enter = 0..1 entrance. */
   readonly state = { u: 0, enter: 0 };
 
-  private ringMat = new THREE.MeshStandardMaterial({ color: 0xc9ced9, metalness: 0.9, roughness: 0.3, envMapIntensity: 1.3 });
-  private coreMat = new THREE.MeshStandardMaterial({ color: 0x2d6bff, metalness: 0.25, roughness: 0.18, emissive: 0x0a2a8a, emissiveIntensity: 0.9, envMapIntensity: 1.4 });
-  private frameMat = new THREE.MeshStandardMaterial({ color: 0x0b0f18, metalness: 0.8, roughness: 0.4 });
+  private ringMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.9, roughness: 0.3, envMapIntensity: 1.3 });
+  private coreMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.25, roughness: 0.18, emissive: 0xd4af37, emissiveIntensity: 0.9, envMapIntensity: 1.4 });
+  private frameMat = new THREE.MeshStandardMaterial({ color: 0x0f0f0f, metalness: 0.8, roughness: 0.4 });
 
   private ring: THREE.InstancedMesh | null = null;
   private ringPivot = new THREE.Group();

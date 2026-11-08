@@ -8,7 +8,7 @@ import type { AssetLoader } from '../assets/loader';
  *  2. Otherwise a deterministic abstract UI mock is painted to a small canvas. These contain NO
  *     essential text - titles and descriptions live in the HTML overlay.
  */
-export function paintPreview(index: number, hue: number, w: number, h: number): HTMLCanvasElement {
+export function paintPreview(index: number, _hue: number, w: number, h: number): HTMLCanvasElement {
   const c = document.createElement('canvas');
   c.width = w;
   c.height = h;
@@ -17,15 +17,15 @@ export function paintPreview(index: number, hue: number, w: number, h: number): 
   const S = w / 640;
 
   const bg = g.createLinearGradient(0, 0, w, h);
-  bg.addColorStop(0, `hsl(${hue} 70% 14%)`);
-  bg.addColorStop(1, `hsl(${(hue + 40) % 360} 75% 28%)`);
+  bg.addColorStop(0, `hsl(0 0% 8%)`);
+  bg.addColorStop(1, `hsl(45 22% 18%)`);
   g.fillStyle = bg;
   g.fillRect(0, 0, w, h);
 
   // Window chrome
-  g.fillStyle = 'rgba(255,255,255,0.08)';
+  g.fillStyle = 'rgba(255, 255, 255,0.08)';
   g.fillRect(0, 0, w, 34 * S);
-  ['#ff6b6b', '#ffd166', '#6bff95'].forEach((col, i) => {
+  ['#d4af37', '#d4af37', '#d4af37'].forEach((col, i) => {
     g.fillStyle = col;
     g.beginPath();
     g.arc((20 + i * 20) * S, 17 * S, 5 * S, 0, Math.PI * 2);
@@ -34,27 +34,27 @@ export function paintPreview(index: number, hue: number, w: number, h: number): 
 
   // Layout blocks differ per project (hero, cards, chart, list)
   const variant = index % 3;
-  g.fillStyle = `hsla(${hue}, 90%, 70%, 0.9)`;
+  g.fillStyle = `hsla(45, 65%, 55%, 0.9)`;
   g.fillRect(36 * S, 70 * S, 240 * S, 18 * S);
-  g.fillStyle = 'rgba(255,255,255,0.75)';
+  g.fillStyle = 'rgba(255, 255, 255,0.75)';
   g.fillRect(36 * S, 100 * S, 180 * S, 10 * S);
   g.fillRect(36 * S, 118 * S, 140 * S, 10 * S);
 
   if (variant === 0) {
     for (let i = 0; i < 3; i++) {
-      g.fillStyle = 'rgba(255,255,255,0.12)';
+      g.fillStyle = 'rgba(255, 255, 255,0.12)';
       g.fillRect((36 + i * 190) * S, 190 * S, 170 * S, 150 * S);
-      g.fillStyle = `hsla(${(hue + i * 30) % 360}, 90%, 65%, 0.85)`;
+      g.fillStyle = `hsla(45, 65%, 55%, 0.85)`;
       g.fillRect((50 + i * 190) * S, 204 * S, 60 * S, 60 * S);
     }
   } else if (variant === 1) {
     for (let i = 0; i < 14; i++) {
       const bh = (30 + rand() * 150) * S;
-      g.fillStyle = `hsla(${(hue + i * 6) % 360}, 90%, 65%, 0.85)`;
+      g.fillStyle = `hsla(45, 65%, 55%, 0.85)`;
       g.fillRect((40 + i * 40) * S, (360 * S) - bh, 26 * S, bh);
     }
   } else {
-    g.strokeStyle = `hsl(${hue} 95% 70%)`;
+    g.strokeStyle = `hsl(45 65% 55%)`;
     g.lineWidth = 4 * S;
     g.beginPath();
     for (let i = 0; i <= 20; i++) {

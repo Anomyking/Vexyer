@@ -117,9 +117,9 @@ export class AtmosphereModule implements SceneModule {
     const d = ctx.sky.dusk;
     u.uOpacity.value = 0.96 * (1 - ctx.sky.stage); // clouds vanish into the dark stage
     // Sun-lit side, shaded side and distance haze all warm up for the dusk flight.
-    (u.uLit.value as THREE.Color).setRGB(1.0, 0.99 - d * 0.24, 0.97 - d * 0.42);
-    (u.uShade.value as THREE.Color).setRGB(0.58 + d * 0.26, 0.68 - d * 0.2, 0.84 - d * 0.3);
-    (u.uHaze.value as THREE.Color).setRGB(0.74 + d * 0.26, 0.85 - d * 0.23, 0.97 - d * 0.55);
+    (u.uLit.value as THREE.Color).setRGB(1.0, 1.0 - d * 0.08, 1.0 - d * 0.25);
+    (u.uShade.value as THREE.Color).setRGB(0.28 + d * 0.12, 0.28 + d * 0.06, 0.28 - d * 0.12);
+    (u.uHaze.value as THREE.Color).setRGB(0.46 + d * 0.12, 0.46 + d * 0.05, 0.46 - d * 0.16);
   }
 
   setQuality(q: QualitySettings): void {

@@ -54,7 +54,7 @@ export class Engine {
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.05;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
-    this.renderer.setClearColor(0x04060c, 1);
+    this.renderer.setClearColor(0x080808, 1);
 
     this.scene.add(this.skyDome.mesh);
     this.post = new PostFX(this.renderer);

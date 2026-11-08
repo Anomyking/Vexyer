@@ -4,7 +4,7 @@ import type { SceneModule } from '../core/context';
 import { clamp, lerp, smoothstep } from '../core/math';
 import type { QualitySettings } from '../core/quality';
 
-const COLORS = [0x2f6bff, 0xff7a1a, 0x8a3dff];
+const COLORS = [0xd4af37, 0xd4af37, 0xd4af37];
 
 export interface RingScreen { x: number; y: number; r: number; visible: boolean }
 

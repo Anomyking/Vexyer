@@ -8,7 +8,7 @@ import { HERO_Y, LAYER_STEP, SLAB_THICK_SCALE, planHeroSlabs } from './heroLayou
 export { HERO_Y };
 
 /** Top layer is the lightest, each layer below is a little deeper: overlaps read as stacked cards. */
-const LAYER_COLORS = [0x2a3552, 0x1d263f, 0x131a2d, 0x0b101d];
+const LAYER_COLORS = [0x353535, 0x262626, 0x1a1a1a, 0x101010];
 
 /**
  * Chapter 1 - the opening. Four large slabs, stacked and overlapping, cover the entire screen;
@@ -30,7 +30,7 @@ export class HeroModule implements SceneModule {
   private portal!: THREE.Mesh;
   private portalMat!: THREE.ShaderMaterial;
   private stars: THREE.Points | null = null;
-  private starMat = new THREE.PointsMaterial({ color: 0xcfe0ff, size: 1.6, sizeAttenuation: false, transparent: true, depthWrite: false });
+  private starMat = new THREE.PointsMaterial({ color: 0xd4af37, size: 1.6, sizeAttenuation: false, transparent: true, depthWrite: false });
 
   constructor() {
     this.group.position.set(0, HERO_Y, 0);
@@ -65,7 +65,7 @@ export class HeroModule implements SceneModule {
           vec2 d = vUv - 0.5; float r = length(d) * 2.0;
           float core = smoothstep(1.0, 0.0, r);
           float ring = smoothstep(0.06, 0.0, abs(r - 0.55 - 0.03 * sin(uTime))) * 0.8;
-          vec3 c = mix(vec3(0.15,0.4,1.0), vec3(0.75,0.6,1.0), r) * (core * core * 1.6 + ring);
+          vec3 c = mix(vec3(0.8314, 0.6863, 0.2157), vec3(0.8314, 0.6863, 0.2157), r) * (core * core * 1.6 + ring);
           gl_FragColor = vec4(c, (core * 0.9 + ring) * uOpacity);
           #include <tonemapping_fragment>
           #include <colorspace_fragment>

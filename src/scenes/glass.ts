@@ -15,7 +15,7 @@ import { Spring, easeOutCubic, seeded, lerp } from '../core/math';
 const SHARD_A = [[78, 88, -95], [40, 82, -62], [18, 75, -40], [7, 70, -26], [1, 65, -12], [-5, 60, 2]];
 const SHARD_B = [[-78, 82, -98], [-40, 77, -66], [-18, 71, -42], [-7, 66, -28], [-1, 61, -14], [5, 57, 0]];
 const FRAG_START = [[-46, 62, -80], [10, 70, -110], [52, 58, -75]];
-const FRAG_TINTS = [0x9fe8ff, 0xc8b6ff, 0xffd2b0];
+const FRAG_TINTS = [0xd4af37, 0xffffff, 0xf0d990];
 /** World scale of the long glass blades that sweep past the camera in the sky chapter. */
 const SHARD_SCALE = 1.7;
 const Y_AXIS = new THREE.Vector3(0, 1, 0);
@@ -80,7 +80,7 @@ export class GlassModule implements SceneModule {
       void main(){
         float r = length(vUv - 0.5) * 2.0;
         float a = (0.012 + 0.2 * smoothstep(0.6, 1.0, r)) * (1.0 - smoothstep(0.96, 1.0, r)) * uAmt;
-        gl_FragColor = vec4(vec3(1.0, 0.6, 0.55) * a, a);
+        gl_FragColor = vec4(vec3(0.8314, 0.6863, 0.2157) * a, a);
       }`,
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
   });
@@ -93,7 +93,7 @@ export class GlassModule implements SceneModule {
   private springs: Spring[][] = [];
   private shardMats: THREE.ShaderMaterial[] = [];
   private debris: THREE.InstancedMesh | null = null;
-  private debrisMat = createGlassMaterial({ tint: 0xbfe6ff, base: 0.22, fresnel: 2.4, seed: 3 });
+  private debrisMat = createGlassMaterial({ tint: 0xd4af37, base: 0.22, fresnel: 2.4, seed: 3 });
   private debrisPos: THREE.Vector3[] = [];
   private debrisSeed: Array<{ phase: number; radius: number; speed: number; anchor: number; start: THREE.Vector3 }> = [];
   private fallback: ReturnType<typeof buildProceduralPack> | null = null;
@@ -126,8 +126,8 @@ export class GlassModule implements SceneModule {
     const sa = this.glassGeometry('shard_a');
     const sb = this.glassGeometry('shard_b');
     if (sa && sb) {
-      const matA = createGlassMaterial({ tint: 0x2f86ff, edge: 0xffffff, seed: 1, simple, base: 0.5, fresnel: 2.0, glow: 0.6 });
-      const matB = createGlassMaterial({ tint: 0x6f5bff, edge: 0xffffff, seed: 4, simple, base: 0.5, fresnel: 2.0, glow: 0.6 });
+      const matA = createGlassMaterial({ tint: 0xd4af37, edge: 0xffffff, seed: 1, simple, base: 0.5, fresnel: 2.0, glow: 0.6 });
+      const matB = createGlassMaterial({ tint: 0xd4af37, edge: 0xffffff, seed: 4, simple, base: 0.5, fresnel: 2.0, glow: 0.6 });
       this.shardMats.push(matA, matB);
       this.shardA = new THREE.Mesh(sa, matA);
       this.shardB = new THREE.Mesh(sb, matB);
@@ -149,20 +149,20 @@ export class GlassModule implements SceneModule {
       const label = new GlassLabel(FRAGMENT_LABELS[i], FRAG_SCALES[i] * LABEL_WIDTH_K, ctx.quality().labelTexture, ctx.renderer.capabilities.getMaxAnisotropy());
       rig.add(label.mesh);
       const phys = new THREE.MeshPhysicalMaterial({
-        color: 0xffd9d9,
+        color: 0xffffff,
         metalness: 0,
         roughness: 0.03,
         transmission: 1,
         thickness: 1.3,            // local units; scaled by the crystal's scale
         ior: 1.6,
         dispersion: 0.6,           // chromatic fringing on facet edges
-        attenuationColor: new THREE.Color(1.0, 0.16, 0.14),
+        attenuationColor: new THREE.Color(0.8314, 0.6863, 0.2157),
         attenuationDistance: 2.6,  // thick parts go deeper red
         specularIntensity: 1,
         clearcoat: 1,
         clearcoatRoughness: 0.02,
         envMapIntensity: 1.9,
-        emissive: new THREE.Color(0.9, 0.08, 0.08),
+        emissive: new THREE.Color(0.8314, 0.6863, 0.2157),
         emissiveIntensity: 0,
         side: THREE.DoubleSide,
       });
